@@ -1,22 +1,30 @@
 import copy
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 from citable_publication.model import PublicationError, load_corpus, parse_document
 
 
 def sample():
     return {
-        "schema_version": 1, "slug": "example", "canonical": "https://example.com/example",
-        "title": "Example", "language": "en", "sections": [{
-            "id": "details", "title": "Details", "blocks": [
-                {"type": "paragraph", "text": "Literal <content> & text."},
-                {"type": "code", "language": "python", "text": "print('hello')\n"},
-                {"type": "table", "headers": ["Name", "Value"], "rows": [["A", "1"]]},
-            ],
-        }],
+        "schema_version": 1,
+        "slug": "example",
+        "canonical": "https://example.com/example",
+        "title": "Example",
+        "language": "en",
+        "sections": [
+            {
+                "id": "details",
+                "title": "Details",
+                "blocks": [
+                    {"type": "paragraph", "text": "Literal <content> & text."},
+                    {"type": "code", "language": "python", "text": "print('hello')\n"},
+                    {"type": "table", "headers": ["Name", "Value"], "rows": [["A", "1"]]},
+                ],
+            }
+        ],
     }
 
 
@@ -26,9 +34,16 @@ class ModelTests(unittest.TestCase):
 
     def test_invalid_document_fields(self):
         for field, values in {
-            "schema_version": [True, 2, "1"], "language": ["es", None],
+            "schema_version": [True, 2, "1"],
+            "language": ["es", None],
             "slug": ["../escape", "UPPER", "", "a/b"],
-            "canonical": ["http://example.com", "https://x/a#b", "https://u:p@x/a", "https://x:bad", "https://x/a b"],
+            "canonical": [
+                "http://example.com",
+                "https://x/a#b",
+                "https://u:p@x/a",
+                "https://x:bad",
+                "https://x/a b",
+            ],
             "title": ["", "x\ny", "x\x00", "x\ud800", "x" + chr(0x2014)],
             "sections": [[], {}, None],
         }.items():
@@ -53,9 +68,13 @@ class ModelTests(unittest.TestCase):
             parse_document(document)
 
     def test_invalid_blocks(self):
-        for block in (None, {"type": "unknown"}, {"type": "paragraph"},
-                      {"type": "table", "headers": [], "rows": []},
-                      {"type": "table", "headers": ["A"], "rows": [["1", "2"]]}):
+        for block in (
+            None,
+            {"type": "unknown"},
+            {"type": "paragraph"},
+            {"type": "table", "headers": [], "rows": []},
+            {"type": "table", "headers": ["A"], "rows": [["1", "2"]]},
+        ):
             document = sample()
             document["sections"][0]["blocks"] = [block]
             with self.subTest(block=block), self.assertRaises(PublicationError):
@@ -67,7 +86,7 @@ class ModelTests(unittest.TestCase):
             payload = {"schema_version": 1, "documents": [sample()]}
             path.write_text(json.dumps(payload), encoding="utf-8")
             self.assertEqual(len(load_corpus(path)), 1)
-            for content in ('{"schema_version":1,"schema_version":1}', '{}', '[]', '{'):
+            for content in ('{"schema_version":1,"schema_version":1}', "{}", "[]", "{"):
                 path.write_text(content, encoding="utf-8")
                 with self.assertRaises(PublicationError):
                     load_corpus(path)

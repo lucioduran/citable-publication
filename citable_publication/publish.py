@@ -1,10 +1,10 @@
 """Verify every expected byte before promoting a new publication directory."""
 
-from dataclasses import dataclass
 import os
-from pathlib import Path
 import shutil
 import tempfile
+from dataclasses import dataclass
+from pathlib import Path
 
 from .model import Document, PublicationError
 from .render import digest, render_files
@@ -37,8 +37,14 @@ def verify(documents: tuple[Document, ...], directory: Path) -> dict:
         else:
             try:
                 actual_content = path.read_bytes()
-                findings.append(Finding(name, "pass" if actual_content == content else "mismatch",
-                                        expected_hash, digest(actual_content)))
+                findings.append(
+                    Finding(
+                        name,
+                        "pass" if actual_content == content else "mismatch",
+                        expected_hash,
+                        digest(actual_content),
+                    )
+                )
             except OSError:
                 findings.append(Finding(name, "unreadable", expected_hash))
     findings.extend(Finding(name, "unexpected") for name in sorted(actual))
@@ -46,9 +52,15 @@ def verify(documents: tuple[Document, ...], directory: Path) -> dict:
         "schema_version": 1,
         "passed": all(item.status == "pass" for item in findings),
         "documents": [
-            {"canonical": doc.canonical, "slug": doc.slug,
-             "passed": all(item.status == "pass" for item in findings if item.path in
-                           {f"{doc.slug}.{ext}" for ext in ("html", "md", "json")})}
+            {
+                "canonical": doc.canonical,
+                "slug": doc.slug,
+                "passed": all(
+                    item.status == "pass"
+                    for item in findings
+                    if item.path in {f"{doc.slug}.{ext}" for ext in ("html", "md", "json")}
+                ),
+            }
             for doc in documents
         ],
         "files": [item.to_dict() for item in findings],

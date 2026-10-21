@@ -2,15 +2,17 @@
 
 import argparse
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from .model import PublicationError, load_corpus
 from .publish import build, verify
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Build and verify equivalent document representations.")
+    parser = argparse.ArgumentParser(
+        description="Build and verify equivalent document representations."
+    )
     parser.add_argument("command", choices=("build", "verify"))
     parser.add_argument("--corpus", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)

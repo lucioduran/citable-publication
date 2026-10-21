@@ -1,9 +1,9 @@
 import json
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 from citable_publication.model import PublicationError, parse_document
@@ -32,7 +32,10 @@ class PublicationTests(unittest.TestCase):
             with self.subTest(name=name):
                 report = verify(self.documents, self.output)
                 self.assertFalse(report["passed"])
-                self.assertEqual([item["path"] for item in report["files"] if item["status"] == "mismatch"], [name])
+                self.assertEqual(
+                    [item["path"] for item in report["files"] if item["status"] == "mismatch"],
+                    [name],
+                )
             path.write_bytes(original)
 
     def test_missing_extra_and_symlink_files_fail(self):
@@ -41,7 +44,9 @@ class PublicationTests(unittest.TestCase):
         (self.output / "extra.txt").write_text("unexpected")
         (self.output / "example.html").unlink()
         (self.output / "example.html").symlink_to(self.root / "outside")
-        statuses = {item["path"]: item["status"] for item in verify(self.documents, self.output)["files"]}
+        statuses = {
+            item["path"]: item["status"] for item in verify(self.documents, self.output)["files"]
+        }
         self.assertEqual(statuses["example.md"], "missing")
         self.assertEqual(statuses["extra.txt"], "unexpected")
         self.assertEqual(statuses["example.html"], "unsafe")
@@ -75,10 +80,24 @@ class PublicationTests(unittest.TestCase):
     def test_cli_exit_codes(self):
         corpus = self.root / "corpus.json"
         corpus.write_text(json.dumps({"schema_version": 1, "documents": [sample()]}))
+
         def run(command):
-            return subprocess.run([sys.executable, "-m", "citable_publication", command,
-                                   "--corpus", str(corpus), "--output", str(self.output)],
-                                  capture_output=True, text=True, check=False)
+            return subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "citable_publication",
+                    command,
+                    "--corpus",
+                    str(corpus),
+                    "--output",
+                    str(self.output),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
         built = run("build")
         self.assertEqual(built.returncode, 0, built.stderr)
         self.assertTrue(json.loads(built.stdout)["passed"])

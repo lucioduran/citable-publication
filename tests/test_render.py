@@ -1,9 +1,15 @@
-from html.parser import HTMLParser
 import json
 import unittest
+from html.parser import HTMLParser
 
 from citable_publication.model import parse_document
-from citable_publication.render import digest, render_files, render_html, render_json, render_markdown
+from citable_publication.render import (
+    digest,
+    render_files,
+    render_html,
+    render_json,
+    render_markdown,
+)
 from tests.test_model import sample
 
 
@@ -57,7 +63,10 @@ class RenderTests(unittest.TestCase):
         result = json.loads(render_json(document))
         citations = result.pop("citations")
         self.assertEqual(result, sample())
-        self.assertEqual(citations, [{"id": "details", "title": "Details", "url": "https://example.com/example#details"}])
+        self.assertEqual(
+            citations,
+            [{"id": "details", "title": "Details", "url": "https://example.com/example#details"}],
+        )
 
     def test_manifest_covers_all_bytes_deterministically(self):
         documents = (parse_document(sample()),)
