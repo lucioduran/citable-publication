@@ -1671,8 +1671,8 @@
     "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
     "processor": "i386",
     "python": "3.13.7",
-    "recorded_at": "2026-10-21T20:45:05.460954+00:00",
-    "revision": "dbc8d83f4be4be2546f838ea9d286d420251d6c7"
+    "recorded_at": "2026-10-21T20:48:30.875583+00:00",
+    "revision": "150b2d3f5059bf0cef5cd7dde441896539ad4d6e"
   },
   "method": "Exhaustive fixed mutations, one fault at a time; no random sampling.",
   "schema_version": 1,
