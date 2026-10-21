@@ -1,0 +1,83 @@
+{
+  "documents": [
+    {
+      "canonical": "https://example.com/publishing-contract",
+      "passed": true,
+      "slug": "publishing-contract"
+    },
+    {
+      "canonical": "https://example.com/literal-content",
+      "passed": true,
+      "slug": "literal-content"
+    },
+    {
+      "canonical": "https://example.com/integrity-limits",
+      "passed": true,
+      "slug": "integrity-limits"
+    }
+  ],
+  "files": [
+    {
+      "actual_sha256": "3458c5fe9b5b46010d3979426c780b5b7349af67638eb9f874ab13d76d3e8cf2",
+      "expected_sha256": "3458c5fe9b5b46010d3979426c780b5b7349af67638eb9f874ab13d76d3e8cf2",
+      "path": "publishing-contract.html",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "fefee665c8aa6fa6ca405c53c04612f6834effffe2246253fc95f8a57d391fa8",
+      "expected_sha256": "fefee665c8aa6fa6ca405c53c04612f6834effffe2246253fc95f8a57d391fa8",
+      "path": "publishing-contract.md",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "cd4969481a414f892242c9a7c44bc79ed31e12c5a57cd0336e93a0aa86607109",
+      "expected_sha256": "cd4969481a414f892242c9a7c44bc79ed31e12c5a57cd0336e93a0aa86607109",
+      "path": "publishing-contract.json",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "e869a5017c6b3d3f7b62f9d473fc1abc50948320c799290c0d0b72cc1d99b9e2",
+      "expected_sha256": "e869a5017c6b3d3f7b62f9d473fc1abc50948320c799290c0d0b72cc1d99b9e2",
+      "path": "literal-content.html",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "43f9c7aefcb381745a743af335fd736caec4ef0ba6363f0a3614fd33d035e9e6",
+      "expected_sha256": "43f9c7aefcb381745a743af335fd736caec4ef0ba6363f0a3614fd33d035e9e6",
+      "path": "literal-content.md",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "8ee6e4b4eaf13c14106e9799c51e4825a08905adec1c252f86fa8500fdf3a0dd",
+      "expected_sha256": "8ee6e4b4eaf13c14106e9799c51e4825a08905adec1c252f86fa8500fdf3a0dd",
+      "path": "literal-content.json",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "f588e6440fd133c621263c1800df98c617a1da28d5a8f5c1f57b0b699ab8eca6",
+      "expected_sha256": "f588e6440fd133c621263c1800df98c617a1da28d5a8f5c1f57b0b699ab8eca6",
+      "path": "integrity-limits.html",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "80063913a53ec5d2a9bd0bc5556b6ce65cfb8ed664920b9b06aac9f56dcb77ef",
+      "expected_sha256": "80063913a53ec5d2a9bd0bc5556b6ce65cfb8ed664920b9b06aac9f56dcb77ef",
+      "path": "integrity-limits.md",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "5ea37a203071fcda0c11d68252dd216ed363d95d67ed1617057db1ab00c5f8c8",
+      "expected_sha256": "5ea37a203071fcda0c11d68252dd216ed363d95d67ed1617057db1ab00c5f8c8",
+      "path": "integrity-limits.json",
+      "status": "pass"
+    },
+    {
+      "actual_sha256": "c0a5826ebde12f57e1da1c6aa3d66f74a46264764fa6d1518a42a00d769ef5ad",
+      "expected_sha256": "c0a5826ebde12f57e1da1c6aa3d66f74a46264764fa6d1518a42a00d769ef5ad",
+      "path": "manifest.json",
+      "status": "pass"
+    }
+  ],
+  "passed": true,
+  "schema_version": 1
+}
