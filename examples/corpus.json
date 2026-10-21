@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "schema_version": 1,
+      "slug": "publishing-contract",
+      "canonical": "https://example.com/publishing-contract",
+      "title": "Publishing contract",
+      "language": "en",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Overview",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "One source document produces HTML, Markdown, and JSON. A canonical URL identifies the document; a section fragment identifies a passage."
+            }
+          ]
+        },
+        {
+          "id": "example",
+          "title": "Executable example",
+          "blocks": [
+            {
+              "type": "code",
+              "language": "python",
+              "text": "def describe(value):\n    return f\"<value>{value}</value>\"\n\nprint(describe(\"a | b & c\"))\n"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Representation",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "HTML",
+                  "Visible text & stable fragments"
+                ],
+                [
+                  "Markdown",
+                  "Literal code | escaped cells"
+                ],
+                [
+                  "JSON",
+                  "Versioned source + citations"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "slug": "literal-content",
+      "canonical": "https://example.com/literal-content",
+      "title": "Literal content",
+      "language": "en",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Overview",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Treat <script>, **markup**, [links](javascript:alert), and a | b as literal content."
+            }
+          ]
+        },
+        {
+          "id": "example",
+          "title": "Executable example",
+          "blocks": [
+            {
+              "type": "code",
+              "language": "python",
+              "text": "def describe(value):\n    return f\"<value>{value}</value>\"\n\nprint(describe(\"a | b & c\"))\n"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Representation",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "HTML",
+                  "Visible text & stable fragments"
+                ],
+                [
+                  "Markdown",
+                  "Literal code | escaped cells"
+                ],
+                [
+                  "JSON",
+                  "Versioned source + citations"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "slug": "integrity-limits",
+      "canonical": "https://example.com/integrity-limits",
+      "title": "Integrity limits",
+      "language": "en",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Overview",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Matching bytes demonstrate consistency with the source. They do not establish factual truth, search visibility, or retrieval quality."
+            }
+          ]
+        },
+        {
+          "id": "example",
+          "title": "Executable example",
+          "blocks": [
+            {
+              "type": "code",
+              "language": "python",
+              "text": "def describe(value):\n    return f\"<value>{value}</value>\"\n\nprint(describe(\"a | b & c\"))\n"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Representation",
+                "Contract"
+              ],
+              "rows": [
+                [
+                  "HTML",
+                  "Visible text & stable fragments"
+                ],
+                [
+                  "Markdown",
+                  "Literal code | escaped cells"
+                ],
+                [
+                  "JSON",
+                  "Versioned source + citations"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
