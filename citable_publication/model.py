@@ -167,8 +167,13 @@ def parse_document(value: object) -> Document:
                 tuple(_block(block) for block in section["blocks"]),
             )
         )
+    slug = _identifier(value["slug"], "slug")
+    reserved = {"manifest", "con", "prn", "aux", "nul"}
+    reserved.update(f"{prefix}{number}" for prefix in ("com", "lpt") for number in range(1, 10))
+    if slug in reserved:
+        raise PublicationError("slug: reserved publication or operating-system filename")
     return Document(
-        _identifier(value["slug"], "slug"),
+        slug,
         _url(value["canonical"]),
         _text(value["title"], "title"),
         tuple(sections),

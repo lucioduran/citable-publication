@@ -24,3 +24,7 @@ Rows must match the header width. Cells must be nonempty single-line strings. Ta
 JSON output adds `citations` with each section's ID, title, and URL. It is an output representation, not a source document unless that field is removed. The source remains the verification authority.
 
 Example canonical URLs are synthetic identifiers. The publisher does not fetch them or test HTTP availability.
+
+Document slugs cannot be `manifest` or Windows device names (`con`, `prn`, `aux`,
+`nul`, `com1` through `com9`, or `lpt1` through `lpt9`). This prevents manifest
+collisions and keeps output filenames portable across supported systems.

@@ -67,6 +67,14 @@ class ModelTests(unittest.TestCase):
         with self.assertRaisesRegex(PublicationError, "duplicate id"):
             parse_document(document)
 
+    def test_reserved_output_names(self):
+        for slug in ("manifest", "con", "aux", "nul", "prn", "com1", "com9", "lpt1", "lpt9"):
+            with self.subTest(slug=slug):
+                document = sample()
+                document["slug"] = slug
+                with self.assertRaisesRegex(PublicationError, "reserved"):
+                    parse_document(document)
+
     def test_invalid_blocks(self):
         for block in (
             None,
